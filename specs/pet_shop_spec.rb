@@ -130,20 +130,20 @@ class TestPetShop < Minitest::Test
 
   def test_find_pet_by_name__returns_nil
      pet = find_pet_by_name(@pet_shop, "Fred")
-     assert_nil(nil, pet)
+     assert_nil(nil, pet)       #ruby reported this was better to use
   end
 
   def test_remove_pet_by_name
     remove_pet_by_name(@pet_shop, "Arthur")
     pet = find_pet_by_name(@pet_shop,"Arthur")
-    assert_nil(nil, pet)
+    assert_nil(nil, pet)     #ruby reported this was better to use
   end
 
-  # def test_add_pet_to_stock
-  #   add_pet_to_stock(@pet_shop, @new_pet)
-  #   count = stock_count(@pet_shop)
-  #   assert_equal(7, count)
-  # end
+  def test_add_pet_to_stock
+    add_pet_to_stock(@pet_shop, @new_pet)
+    count = stock_count(@pet_shop)
+    assert_equal(7, count)
+  end
 
   # def test_customer_pet_count
   #   count = customer_pet_count(@customers[0])
