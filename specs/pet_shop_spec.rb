@@ -130,7 +130,7 @@ class TestPetShop < Minitest::Test
 
   def test_find_pet_by_name__returns_nil
      pet = find_pet_by_name(@pet_shop, "Fred")
-     assert_nil(nil, pet)       #ruby reported this was better to use
+     assert_equal(false, pet)       #ruby reported this was better to use
   end
 
   def test_remove_pet_by_name
@@ -170,39 +170,43 @@ class TestPetShop < Minitest::Test
     assert_equal(true, can_buy_pet)
   end
 
-  # #These are 'integration' tests so we want multiple asserts.
-  # #If one fails the entire test should fail
-  # def test_sell_pet_to_customer__pet_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+  #These are 'integration' tests so we want multiple asserts.
+  #If one fails the entire test should fail
+  def test_sell_pet_to_customer__pet_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+    puts "pet found test"
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    assert_equal(1, customer_pet_count(customer))
+    assert_equal(1, pets_sold(@pet_shop))
+    assert_equal(1900, total_cash(@pet_shop))
+  end
 
-  #   assert_equal(1, customer_pet_count(customer))
-  #   assert_equal(1, pets_sold(@pet_shop))
-  #   assert_equal(1900, total_cash(@pet_shop))
-  # end
+# *** Weird Ruby shell does not run unit tests
+# in the same order as they are written
+# Check this out on monday morning q's ***
 
-  # def test_sell_pet_to_customer__pet_not_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Dave")
+  def test_sell_pet_to_customer__pet_not_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Dave")
+    puts "pet not found test"
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
 
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
+  def test_sell_pet_to_customer__insufficient_funds
+    customer = @customers[1]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+    puts "insufficient funds test"
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  # def test_sell_pet_to_customer__insufficient_funds
-  #   customer = @customers[1]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
-
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
 
 end

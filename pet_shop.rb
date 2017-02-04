@@ -45,7 +45,7 @@ def find_pet_by_name(pet_shop, name)
       return pet
     end
   end
-return nil
+return false
 end
 
 def remove_pet_by_name(pet_shop, name)
@@ -68,13 +68,29 @@ def add_pet_to_customer(customer, new_pet)
   customer[:pets].push(new_pet)
 end
 
-def customer_can_afford_pet(customer, new_pet)
-  if customer[:cash] >= new_pet[:price]
+def customer_can_afford_pet(customer, pet)
+  if customer[:cash] >= pet[:price]
     return true
   else
     return false
   end
 end
 
+def sell_pet_to_customer(pet_shop, pet, customer)
+  if pet && customer_can_afford_pet(customer, pet)
+    puts "Pet #{pet[:name]} exists"
+    puts "customer has funds #{customer[:cash]} and #{pet[:name]} costs #{pet[:price]}"
+    add_pet_to_customer(customer, pet)
+    remove_pet_by_name(pet_shop, pet[:name])
+    increase_pets_sold(pet_shop, 1)
+    add_or_remove_cash(pet_shop, pet[:price])
+  else
+   if pet == false
+     puts "that pet does not exist"
+   else
+    puts "The customer does not have sufficient funds to buy the pet"
+  end
+end
+end
 
 
