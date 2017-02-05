@@ -45,7 +45,7 @@ def find_pet_by_name(pet_shop, name)
       return pet
     end
   end
-return false
+  return false
 end
 
 def remove_pet_by_name(pet_shop, name)
@@ -85,12 +85,53 @@ def sell_pet_to_customer(pet_shop, pet, customer)
     increase_pets_sold(pet_shop, 1)
     add_or_remove_cash(pet_shop, pet[:price])
   else
-   if pet == false
+    if pet == false
      puts "that pet does not exist"
-   else
-    puts "The customer does not have sufficient funds to buy the pet"
+    else
+      puts "The customer does not have sufficient funds to buy the pet"
+    end
   end
 end
+
+def enumeration_test(pet_shop)
+
+puts " "
+puts " "
+puts "*************************"
+puts "enumeration tests"
+puts " "
+
+# iterates over the comeplete hash
+puts " "
+puts "for pet in pet_shop"
+for pet in pet_shop
+  puts pet
+end 
+
+
+
+puts " "
+puts "for pet in pet_shop[:pets]"
+# iterates over pets
+for pet in pet_shop[:pets]
+  puts pet
+end 
+
+puts " "
+puts " "
+puts "*************************"
+
+puts "we can only enumerate keys! Of course! Once we have the key, we can then operate on the arrays attached to that key"
+
+
+puts " "
+puts " "
+puts "*************************"
+
+
 end
+
+
+
 
 

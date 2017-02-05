@@ -209,4 +209,13 @@ class TestPetShop < Minitest::Test
     assert_equal(1000, total_cash(@pet_shop))
   end
 
+#a function name must start with test_ to work!!
+
+  def test_exploring_what_hash_enumeration_hashes_really_does
+    puts "enumeration_test"
+    enumeration_test(@pet_shop)
+
+  end
+
+
 end
