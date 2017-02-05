@@ -108,8 +108,6 @@ for pet in pet_shop
   puts pet
 end 
 
-
-
 puts " "
 puts "for pet in pet_shop[:pets]"
 # iterates over pets
@@ -120,13 +118,10 @@ end
 puts " "
 puts " "
 puts "*************************"
-
-puts "we can only enumerate keys! Of course! Once we have the key, we can then operate on the arrays attached to that key"
-
-
-puts " "
-puts " "
+puts "Of course! we can only enumerate keys! \nOnce we have the key, we can then operate on the arrays attached to that key"
 puts "*************************"
+puts " "
+puts " "
 
 
 end
